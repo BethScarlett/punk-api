@@ -1,11 +1,12 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import "./App.scss";
+import NavBar from "./components/NavBar/NavBar";
 
 const App = () => {
   return (
     <>
-      <div>This is where the NavBar will be</div>
-      <Link to="/cardlist"> Render Cards </Link>
+      <div>Punk API</div>
+      <NavBar />
       <Outlet />
     </>
   );
