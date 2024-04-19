@@ -1,7 +1,11 @@
 import Card from "../../components/Card/Card";
-import beers from "../../data/beer";
+import { Beer } from "../../types/types";
 
-const CardContent = () => {
+type Beers = {
+  beers: Beer[];
+};
+
+const CardContent = ({ beers }: Beers) => {
   return (
     <div>
       {beers.map((beer) => (
