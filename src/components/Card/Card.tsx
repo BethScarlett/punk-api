@@ -1,4 +1,3 @@
-import CardDescription from "../CardDescription/CardDescription";
 import "./Card.scss";
 import { useState } from "react";
 
@@ -23,23 +22,34 @@ const Card = ({ img, name, description }: CardProps) => {
     setShowFullDesc(!showFullDesc);
   };
 
+  //TODO - Think of better name than smallDesc and fullDesc
+
+  const smallDesc = (
+    <div>
+      <div>{shortDesc}</div>
+      <button onClick={handleShowFullDesc} className="card__button">
+        [Expand]
+      </button>
+    </div>
+  );
+
+  const fullDesc = (
+    <>
+      <h2 className="card__heading">Description: </h2>
+      <p>{description}</p>
+      <button onClick={handleShowFullDesc} className="card__button">
+        [Go back]
+      </button>
+    </>
+  );
+
+  let cardClassName = "card__description";
+  if (showFullDesc) cardClassName += " card__description--back";
   return (
     <div className="card">
       <img src={img} alt="" className="card__image" />
       <h1 className="card__heading">{name}</h1>
-      <p className="card__description">
-        {shortDesc}
-        {/* Show Full Description when expand button is pressed */}
-        {showFullDesc && (
-          <CardDescription
-            description={description}
-            handleShowFullDesc={handleShowFullDesc}
-          />
-        )}
-        <button onClick={handleShowFullDesc} className="card__button">
-          [expand]
-        </button>
-      </p>
+      <div className={cardClassName}>{showFullDesc ? fullDesc : smallDesc}</div>
     </div>
   );
 };
@@ -47,6 +57,3 @@ const Card = ({ img, name, description }: CardProps) => {
 export default Card;
 
 //TODO - Look at dealing with shortening the description in the card content container instead
-
-//Left to do - enable button to bring up a container with the whole description (similar to menus in ear worm)
-//           - enable this pop-up to be closed
