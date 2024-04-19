@@ -1,0 +1,19 @@
+@use "../../assets/styles/variables" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 200px;
+  width: 275px;
+  margin: auto;
+  padding: 1px;
+  background-color: $navbar-background;
+  border: 1px solid $navbar-border;
+}
