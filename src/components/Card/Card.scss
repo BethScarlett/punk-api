@@ -1,0 +1,44 @@
+@use "../../assets/styles/variables" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 430px;
+  width: 95vw;
+  max-width: 275px;
+  padding-left: 5px;
+  margin: 10px auto;
+  background-color: $card-background;
+  border: 5px solid black;
+
+  &__image {
+    align-self: center;
+    height: 45%;
+    width: 40%;
+    margin: 10px 0;
+  }
+
+  &__heading {
+    font-size: 28px;
+    font-family: $card-name;
+    margin-bottom: 10px;
+  }
+
+  &__description {
+    font-size: 14px;
+    font-family: $card-description;
+  }
+
+  &__button {
+    all: unset;
+    color: blue;
+  }
+}
+
+//TODO - Tune styling at super low screen widths (235px and below)

@@ -8,7 +8,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage.tsx";
-import CardContent from "./containers/CardContent.tsx";
+import CardContent from "./containers/CardContent/CardContent.tsx";
 
 const router = createBrowserRouter([
   {
