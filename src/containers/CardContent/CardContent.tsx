@@ -47,6 +47,3 @@ const CardContent = ({ beers, searchTerm, filterElement }: Beers) => {
 };
 
 export default CardContent;
-
-//[ ] - Get data from Navbar cotainer into here, then filter based off of import
-//      It should allow for multiple concurrent filters
