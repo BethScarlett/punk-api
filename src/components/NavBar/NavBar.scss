@@ -11,9 +11,19 @@
   flex-direction: column;
   justify-content: space-evenly;
   height: 220px;
-  width: 275px;
+  width: 100vw;
+  max-width: 550px;
   margin: auto;
+  margin-bottom: 20px;
   padding: 1px;
   background-color: $navbar-background;
   border: 1px solid $navbar-border;
+}
+
+@media screen and (min-width: 930px) {
+  .navbar {
+    height: 95vh;
+    width: 30vw;
+    max-width: 258px;
+  }
 }
