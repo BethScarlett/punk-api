@@ -1,10 +1,16 @@
+import { FormEventHandler } from "react";
 import "./SearchBar.scss";
 
-const SearchBar = () => {
+type SearchBarProps = {
+  searchTerm: string;
+  handleSearchByName: FormEventHandler<HTMLInputElement>;
+};
+
+const SearchBar = ({ searchTerm, handleSearchByName }: SearchBarProps) => {
   return (
     <div className="search-bar">
       <label>Search: </label>
-      <input type="text" />
+      <input type="text" value={searchTerm} onInput={handleSearchByName} />
     </div>
   );
 };

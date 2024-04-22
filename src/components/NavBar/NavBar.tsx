@@ -1,12 +1,26 @@
+import { FormEventHandler } from "react";
 import FilterList from "../FilterList/FilterList";
 import SearchBar from "../SearchBar/SearchBar";
 import "./NavBar.scss";
 
-const NavBar = () => {
+type NavbarProps = {
+  searchTerm: string;
+  handleSearchByName: FormEventHandler<HTMLInputElement>;
+  handleSearchByFilter: FormEventHandler<HTMLInputElement>;
+};
+
+const NavBar = ({
+  searchTerm,
+  handleSearchByName,
+  handleSearchByFilter,
+}: NavbarProps) => {
   return (
     <div className="navbar">
-      <SearchBar />
-      <FilterList />
+      <SearchBar
+        searchTerm={searchTerm}
+        handleSearchByName={handleSearchByName}
+      />
+      <FilterList handleSearchByFilter={handleSearchByFilter} />
     </div>
   );
 };
