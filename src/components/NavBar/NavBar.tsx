@@ -2,6 +2,7 @@ import { FormEventHandler } from "react";
 import FilterList from "../FilterList/FilterList";
 import SearchBar from "../SearchBar/SearchBar";
 import "./NavBar.scss";
+import construction from "../../../public/under-construction.svg";
 
 type NavbarProps = {
   searchTerm: string;
@@ -21,6 +22,13 @@ const NavBar = ({
         handleSearchByName={handleSearchByName}
       />
       <FilterList handleSearchByFilter={handleSearchByFilter} />
+      <div className="navbar__construction">
+        <img
+          src={construction}
+          alt="Under construction sign"
+          className="navbar__construction"
+        />
+      </div>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import "./CardContent.scss";
 import Card from "../../components/Card/Card";
 import { Beer } from "../../types/types";
 
@@ -32,9 +33,9 @@ const CardContent = ({ beers, searchTerm, filterElement }: Beers) => {
   }
 
   return (
-    <div>
+    <div className="beer-list">
       {filteredBeers.map((beer) => (
-        <div key={beer.id}>
+        <div key={beer.id} className="beer-list__card">
           <Card
             img={beer.image_url}
             name={beer.name}

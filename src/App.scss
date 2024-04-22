@@ -1,0 +1,33 @@
+@use "./assets/styles/variables" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $app-background;
+
+  &__heading {
+    width: 100vw;
+    text-align: center;
+    font-family: $page-heading;
+    font-weight: 200;
+  }
+}
+
+@media screen and (min-width: 930px) {
+  .app {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    &__navbar {
+      align-self: flex-start;
+    }
+  }
+}

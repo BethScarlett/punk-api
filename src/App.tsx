@@ -24,13 +24,15 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div>
-        <h1>Punk API</h1>
-        <NavBar
-          searchTerm={searchTerm}
-          handleSearchByName={handleSearchByName}
-          handleSearchByFilter={handleSearchByFilter}
-        />
+      <div className="app">
+        <h1 className="app__heading">🍺Punk API🍺</h1>
+        <div className="app__navbar">
+          <NavBar
+            searchTerm={searchTerm}
+            handleSearchByName={handleSearchByName}
+            handleSearchByFilter={handleSearchByFilter}
+          />
+        </div>
         <Routes>
           <Route
             path="/"

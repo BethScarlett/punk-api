@@ -9,7 +9,7 @@ type SearchBarProps = {
 const SearchBar = ({ searchTerm, handleSearchByName }: SearchBarProps) => {
   return (
     <div className="search-bar">
-      <label>Search: </label>
+      <label className="search-bar__label">Search: </label>
       <input type="text" value={searchTerm} onInput={handleSearchByName} />
     </div>
   );
