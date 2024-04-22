@@ -1,13 +1,15 @@
 import "./Card.scss";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 type CardProps = {
   img: string;
   name: string;
   description: string;
+  id: number;
 };
 
-const Card = ({ img, name, description }: CardProps) => {
+const Card = ({ img, name, description, id }: CardProps) => {
   //Shorten description if it's too long
   let shortDesc: string = description;
   if (description.length > 150) {
@@ -48,7 +50,10 @@ const Card = ({ img, name, description }: CardProps) => {
   return (
     <div className="card">
       <img src={img} alt="" className="card__image" />
-      <h1 className="card__heading">{name}</h1>
+      <Link to={`/${id}`}>
+        <h1 className="card__heading">{name}</h1>
+      </Link>
+
       <div className={cardClassName}>{showFullDesc ? fullDesc : smallDesc}</div>
     </div>
   );

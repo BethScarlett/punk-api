@@ -40,6 +40,7 @@ const CardContent = ({ beers, searchTerm, filterElement }: Beers) => {
             img={beer.image_url}
             name={beer.name}
             description={beer.description}
+            id={beer.id}
           />
         </div>
       ))}

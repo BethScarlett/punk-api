@@ -44,6 +44,10 @@ const App = () => {
               />
             }
           />
+          <Route
+            path="/:beerID"
+            //TODO - Create new element to display full beer details
+          />
         </Routes>
       </div>
     </BrowserRouter>
