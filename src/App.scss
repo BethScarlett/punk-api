@@ -1,3 +1,5 @@
+@use "./assets/styles/variables" as *;
+
 * {
   margin: 0;
   padding: 0;
@@ -8,10 +10,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: $app-background;
 
   &__heading {
     width: 100vw;
     text-align: center;
+    font-family: $page-heading;
+    font-weight: 200;
   }
 }
 

@@ -9,21 +9,46 @@
 .navbar {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   height: 220px;
   width: 100vw;
   max-width: 550px;
   margin: auto;
   margin-bottom: 20px;
   padding: 1px;
+  padding-top: 20px;
   background-color: $navbar-background;
   border: 1px solid $navbar-border;
+
+  &__construction {
+    display: none;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(
+      -45deg,
+      #000 0px,
+      #000 20px,
+      #f3ff00 21px,
+      #f3ff00 40px,
+      #000 41px
+    );
+    border: 2px solid $construction-border;
+  }
 }
 
 @media screen and (min-width: 930px) {
   .navbar {
-    height: 95vh;
+    height: 122vh;
     width: 30vw;
     max-width: 258px;
+
+    &__construction {
+      display: inherit;
+    }
+  }
+}
+
+@media screen and (min-width: 1232px) {
+  .navbar {
+    height: 95vh;
   }
 }

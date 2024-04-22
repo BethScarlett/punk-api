@@ -25,7 +25,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="app">
-        <h1 className="app__heading">Punk API</h1>
+        <h1 className="app__heading">🍺Punk API🍺</h1>
         <div className="app__navbar">
           <NavBar
             searchTerm={searchTerm}
