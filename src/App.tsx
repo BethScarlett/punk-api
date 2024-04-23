@@ -3,12 +3,27 @@ import "./App.scss";
 import NavBar from "./components/NavBar/NavBar";
 import CardContent from "./containers/CardContent/CardContent";
 import beers from "./data/beer";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import BeerInfo from "./components/BeerInfo/BeerInfo";
+import { Beer } from "./types/types";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filterElement, setFilterElement] = useState<string>("");
+  const [other, setOther] = useState<Beer[]>(beers);
+
+  const getBeers = async () => {
+    const url = `http://localhost:3333/v2/beers?per_page=80`;
+    const res = await fetch(url);
+    const data: Beer[] = await res.json();
+    setOther(data);
+  };
+
+  useEffect(() => {
+    getBeers();
+  }, []);
+
+  console.log(other);
 
   const handleSearchByName = (event: FormEvent<HTMLInputElement>) => {
     const cleanSearch = event.currentTarget.value.toLowerCase();
@@ -39,13 +54,13 @@ const App = () => {
             path="/"
             element={
               <CardContent
-                beers={beers}
+                beers={other}
                 searchTerm={searchTerm}
                 filterElement={filterElement}
               />
             }
           />
-          <Route path="/:beerID" element={<BeerInfo beers={beers} />} />
+          <Route path="/:beerID" element={<BeerInfo beers={other} />} />
         </Routes>
       </div>
     </BrowserRouter>
