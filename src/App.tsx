@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar/NavBar";
 import CardContent from "./containers/CardContent/CardContent";
 import beers from "./data/beer";
 import { FormEvent, useState } from "react";
+import BeerInfo from "./components/BeerInfo/BeerInfo";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -44,10 +45,7 @@ const App = () => {
               />
             }
           />
-          <Route
-            path="/:beerID"
-            //TODO - Create new element to display full beer details
-          />
+          <Route path="/:beerID" element={<BeerInfo beers={beers} />} />
         </Routes>
       </div>
     </BrowserRouter>
