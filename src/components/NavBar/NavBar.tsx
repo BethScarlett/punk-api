@@ -2,7 +2,7 @@ import { FormEventHandler } from "react";
 import FilterList from "../FilterList/FilterList";
 import SearchBar from "../SearchBar/SearchBar";
 import "./NavBar.scss";
-import construction from "../../../public/under-construction.svg";
+import construction from "/under-construction.svg";
 
 type NavbarProps = {
   searchTerm: string;

@@ -49,3 +49,5 @@ const CardContent = ({ beers, searchTerm, filterElement }: Beers) => {
 };
 
 export default CardContent;
+
+//BUG - Some beers don't have corresponding images

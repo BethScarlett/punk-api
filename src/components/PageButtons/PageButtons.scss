@@ -1,0 +1,33 @@
+@use "../../assets/styles/variables" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.page-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 4vw;
+  margin-left: -15px;
+  text-align: center;
+  box-shadow: 1px 1px 5px 1px $page-buttons-shadows;
+  border-radius: 4px;
+
+  &__arrow {
+    box-shadow: 1px 1px 5px 1px $page-buttons-shadows;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__number {
+    margin: 10px 0;
+    font-family: $page-buttons-font;
+    color: $page-buttons-number;
+    background-color: $page-buttons-background;
+    box-shadow: 1px 1px 5px 1px $page-buttons-shadows;
+  }
+}

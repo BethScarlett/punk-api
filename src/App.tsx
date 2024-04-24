@@ -2,28 +2,37 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
 import NavBar from "./components/NavBar/NavBar";
 import CardContent from "./containers/CardContent/CardContent";
-import beers from "./data/beer";
 import { FormEvent, useEffect, useState } from "react";
 import BeerInfo from "./components/BeerInfo/BeerInfo";
 import { Beer } from "./types/types";
+import PageButtons from "./components/PageButtons/PageButtons";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filterElement, setFilterElement] = useState<string>("");
-  const [other, setOther] = useState<Beer[]>(beers);
+  const [apiBeers, setAPIBeers] = useState<Beer[]>([]);
+  const [pageNumber, setPageNumber] = useState<number>(1);
 
-  const getBeers = async () => {
-    const url = `http://localhost:3333/v2/beers?per_page=80`;
+  const getBeers = async (pageNumber: number) => {
+    const url = `http://localhost:3333/v2/beers?page=${pageNumber}`;
     const res = await fetch(url);
     const data: Beer[] = await res.json();
-    setOther(data);
+    setAPIBeers(data);
   };
 
   useEffect(() => {
-    getBeers();
-  }, []);
+    getBeers(pageNumber);
+  }, [pageNumber]);
 
-  console.log(other);
+  const handleIncrement = () => {
+    if (pageNumber < 13) setPageNumber(pageNumber + 1);
+  };
+
+  const handleDecrement = () => {
+    if (pageNumber > 1) setPageNumber(pageNumber - 1);
+  };
+
+  console.log(apiBeers);
 
   const handleSearchByName = (event: FormEvent<HTMLInputElement>) => {
     const cleanSearch = event.currentTarget.value.toLowerCase();
@@ -37,6 +46,8 @@ const App = () => {
       setFilterElement("");
     }
   };
+
+  //TODO - use params to filter data which from filter list elements
 
   return (
     <BrowserRouter>
@@ -53,14 +64,21 @@ const App = () => {
           <Route
             path="/"
             element={
-              <CardContent
-                beers={other}
-                searchTerm={searchTerm}
-                filterElement={filterElement}
-              />
+              <>
+                <CardContent
+                  beers={apiBeers}
+                  searchTerm={searchTerm}
+                  filterElement={filterElement}
+                />
+                <PageButtons
+                  page={pageNumber}
+                  handleDecrement={handleDecrement}
+                  handleIncrement={handleIncrement}
+                />
+              </>
             }
           />
-          <Route path="/:beerID" element={<BeerInfo beers={other} />} />
+          <Route path="/:beerID" element={<BeerInfo beers={apiBeers} />} />
         </Routes>
       </div>
     </BrowserRouter>

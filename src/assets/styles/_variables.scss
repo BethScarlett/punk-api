@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 
 //////////Colour Variables//////////
 
@@ -8,6 +9,8 @@ $app-background: #12a3d1;
 
 $card-background-1: #dddddd;
 $card-background-2: #ffffff;
+
+$page-buttons-background: #000000;
 
 $navbar-background: #ffd8fb;
 
@@ -18,17 +21,27 @@ $construction-border: #000000;
 
 $navbar-border: #341a31;
 
+//Shadows
+$page-buttons-shadows: #000000;
+
+//Text
+$page-buttons-number: #54ae00;
+
 //////////Font Variables//////////
 
 //Descriptions
 
 $card-description: "Open sans", "sans-serif";
 
-//Labels
-$navbar-labels: Sansita, "sans-serif";
-
 //Headings
 
 $card-name: Sansita, "sans-serif";
 
+$page-buttons-font: "Space Grotesk", sans-serif;
+
 $page-heading: "Abril Fatface", serif;
+
+//Labels
+$navbar-labels: Sansita, "sans-serif";
+
+//TODO - Change variables to be by component rather than as is, and merge import fonts to one line perhaps?
