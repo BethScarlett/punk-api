@@ -19,14 +19,14 @@ const PageButtons = ({
         src={up}
         alt="up"
         onClick={handleIncrement}
-        className="page-buttons__arrow"
+        className="page-buttons__arrow page-buttons__arrow--up"
       />
       <label className="page-buttons__number">Page: {page}</label>
       <img
         src={down}
         alt="down"
         onClick={handleDecrement}
-        className="page-buttons__arrow"
+        className="page-buttons__arrow page-buttons__arrow--down"
       />
     </div>
   );

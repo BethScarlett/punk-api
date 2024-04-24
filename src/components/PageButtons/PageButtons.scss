@@ -8,26 +8,52 @@
 
 .page-buttons {
   display: flex;
-  flex-direction: column;
-  width: 4vw;
-  margin-left: -15px;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 300px;
+  height: 100px;
   text-align: center;
-  box-shadow: 1px 1px 5px 1px $page-buttons-shadows;
   border-radius: 4px;
 
   &__arrow {
+    width: 60px;
+    height: 60px;
+    rotate: 90deg;
     box-shadow: 1px 1px 5px 1px $page-buttons-shadows;
 
     &:hover {
       cursor: pointer;
     }
+
+    &--up {
+      order: 1;
+    }
+
+    &--down {
+      order: -1;
+    }
   }
 
   &__number {
-    margin: 10px 0;
+    padding: 20px 0;
     font-family: $page-buttons-font;
     color: $page-buttons-number;
     background-color: $page-buttons-background;
     box-shadow: 1px 1px 5px 1px $page-buttons-shadows;
+  }
+}
+
+@media screen and (min-width: 930px) {
+  .page-buttons {
+    flex-direction: column;
+    width: 10px;
+
+    &__arrow {
+      rotate: 180deg;
+    }
+
+    &__number {
+      margin: 10px 0;
+    }
   }
 }
