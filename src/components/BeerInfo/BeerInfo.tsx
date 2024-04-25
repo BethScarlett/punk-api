@@ -39,7 +39,7 @@ const BeerInfo = ({ beers }: BeerInfoProps) => {
   ingredients += `), Yeast (${filteredBeer.ingredients.yeast})`;
 
   return (
-    <div className="beer-info">
+    <div className="beer-info" id="information">
       <img
         src={filteredBeer.image_url}
         alt={filteredBeer.name}
