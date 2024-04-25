@@ -6,11 +6,11 @@ type SearchBarProps = {
   handleSearchByName: FormEventHandler<HTMLInputElement>;
 };
 
-const SearchBar = ({ searchTerm, handleSearchByName }: SearchBarProps) => {
+const SearchBar = ({ handleSearchByName }: SearchBarProps) => {
   return (
     <div className="search-bar">
       <label className="search-bar__label">Search: </label>
-      <input type="text" value={searchTerm} onInput={handleSearchByName} />
+      <input type="text" onInput={handleSearchByName} />
     </div>
   );
 };

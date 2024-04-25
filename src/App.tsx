@@ -10,44 +10,68 @@ import PageButtons from "./components/PageButtons/PageButtons";
 const App = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filterElement, setFilterElement] = useState<string>("");
+  const [acidic, setAcidic] = useState<boolean>(false);
   const [apiBeers, setAPIBeers] = useState<Beer[]>([]);
   const [pageNumber, setPageNumber] = useState<number>(1);
 
-  const getBeers = async (pageNumber: number) => {
-    const url = `http://localhost:3333/v2/beers?page=${pageNumber}`;
+  const getBeers = async (
+    pageNumber: number,
+    filterElement: string,
+    acidic: boolean,
+    searchTerm: string
+  ) => {
+    const url = `http://localhost:3333/v2/beers?page=${pageNumber}${filterElement}${searchTerm}`;
     const res = await fetch(url);
-    const data: Beer[] = await res.json();
+    let data: Beer[] = await res.json();
+    console.log(data);
+    if (acidic) {
+      data = data.filter((beer) => beer.ph < 4);
+    }
     setAPIBeers(data);
   };
 
   useEffect(() => {
-    getBeers(pageNumber);
-  }, [pageNumber]);
+    getBeers(pageNumber, filterElement, acidic, searchTerm);
+  }, [pageNumber, filterElement, acidic, searchTerm]);
 
   const handleIncrement = () => {
-    if (pageNumber < 13) setPageNumber(pageNumber + 1);
+    if (pageNumber < 13 && (apiBeers.length == 25 || acidic))
+      setPageNumber(pageNumber + 1);
   };
-
+  //BUG - If you search by name and acidic, you can still go onto blank pages
   const handleDecrement = () => {
     if (pageNumber > 1) setPageNumber(pageNumber - 1);
   };
 
-  console.log(apiBeers);
-
   const handleSearchByName = (event: FormEvent<HTMLInputElement>) => {
     const cleanSearch = event.currentTarget.value.toLowerCase();
-    setSearchTerm(cleanSearch);
+    if (cleanSearch != "") {
+      setSearchTerm(`&beer_name=${cleanSearch}`);
+    } else {
+      setSearchTerm("");
+    }
   };
 
   const handleSearchByFilter = (event: FormEvent<HTMLInputElement>) => {
     if (event.currentTarget.checked) {
-      setFilterElement(event.currentTarget.id);
-    } else {
-      setFilterElement("");
+      switch (event.currentTarget.id) {
+        case "ABV":
+          setFilterElement("&abv_gt=6");
+          setAcidic(false);
+          break;
+        case "Classic":
+          setFilterElement("&brewed_before=01-2010");
+          setAcidic(false);
+          break;
+        case "Acidic":
+          setFilterElement("");
+          setAcidic(true);
+          break;
+        default:
+          setFilterElement("");
+      }
     }
   };
-
-  //TODO - use params to filter data which from filter list elements
 
   return (
     <BrowserRouter>

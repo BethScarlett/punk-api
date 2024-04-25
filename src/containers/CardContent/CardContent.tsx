@@ -8,33 +8,33 @@ type Beers = {
   filterElement: string;
 };
 
-const CardContent = ({ beers, searchTerm, filterElement }: Beers) => {
-  let filteredBeers = beers.filter((beer) =>
-    beer.name.toLowerCase().includes(searchTerm)
-  );
+const CardContent = ({ beers }: Beers) => {
+  // let filteredBeers = beers.filter((beer) =>
+  //   beer.name.toLowerCase().includes(searchTerm)
+  // );
 
-  switch (filterElement) {
-    case "ABV": {
-      filteredBeers = filteredBeers.filter((beer) => beer.abv > 6);
-      break;
-    }
-    case "Classic": {
-      filteredBeers = filteredBeers.filter(
-        (beer) => Number(beer.first_brewed.split("/")[1]) < 2010
-      );
-      break;
-    }
-    case "Acidic": {
-      filteredBeers = filteredBeers.filter((beer) => beer.ph > 4);
-      break;
-    }
-    default: {
-    }
-  }
+  // switch (filterElement) {
+  //   case "ABV": {
+  //     filteredBeers = filteredBeers.filter((beer) => beer.abv > 6);
+  //     break;
+  //   }
+  //   case "Classic": {
+  //     filteredBeers = filteredBeers.filter(
+  //       (beer) => Number(beer.first_brewed.split("/")[1]) < 2010
+  //     );
+  //     break;
+  //   }
+  //   case "Acidic": {
+  //     filteredBeers = filteredBeers.filter((beer) => beer.ph > 4);
+  //     break;
+  //   }
+  //   default: {
+  //   }
+  // }
 
   return (
     <div className="beer-list">
-      {filteredBeers.map((beer) => (
+      {beers.map((beer) => (
         <div key={beer.id} className="beer-list__card">
           <Card
             img={beer.image_url}
@@ -51,3 +51,4 @@ const CardContent = ({ beers, searchTerm, filterElement }: Beers) => {
 export default CardContent;
 
 //BUG - Some beers don't have corresponding images
+//TODO - Remove now uneeded props in type, and rename to ...Props while you're at it
