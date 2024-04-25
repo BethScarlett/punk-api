@@ -6,6 +6,9 @@ import { FormEvent, useEffect, useState } from "react";
 import BeerInfo from "./components/BeerInfo/BeerInfo";
 import { Beer } from "./types/types";
 import PageButtons from "./components/PageButtons/PageButtons";
+import NoBeers from "./components/NoBeers/NoBeers";
+
+//TODO - Tidy up code, including the above mess
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -13,6 +16,7 @@ const App = () => {
   const [acidic, setAcidic] = useState<boolean>(false);
   const [apiBeers, setAPIBeers] = useState<Beer[]>([]);
   const [pageNumber, setPageNumber] = useState<number>(1);
+  const [noBeers, setNoBeers] = useState<boolean>(false);
 
   const getBeers = async (
     pageNumber: number,
@@ -23,10 +27,14 @@ const App = () => {
     const url = `http://localhost:3333/v2/beers?page=${pageNumber}${filterElement}${searchTerm}`;
     const res = await fetch(url);
     let data: Beer[] = await res.json();
-    console.log(data);
+
     if (acidic) {
       data = data.filter((beer) => beer.ph < 4);
     }
+
+    if (data.length == 0) setNoBeers(true);
+    else if (data.length > 0) setNoBeers(false);
+
     setAPIBeers(data);
   };
 
@@ -38,7 +46,7 @@ const App = () => {
     if (pageNumber < 13 && (apiBeers.length == 25 || acidic))
       setPageNumber(pageNumber + 1);
   };
-  //BUG - If you search by name and acidic, you can still go onto blank pages
+
   const handleDecrement = () => {
     if (pageNumber > 1) setPageNumber(pageNumber - 1);
   };
@@ -89,11 +97,17 @@ const App = () => {
             path="/"
             element={
               <>
-                <CardContent
-                  beers={apiBeers}
-                  searchTerm={searchTerm}
-                  filterElement={filterElement}
-                />
+                <div>
+                  {noBeers ? (
+                    <NoBeers />
+                  ) : (
+                    <CardContent
+                      beers={apiBeers}
+                      searchTerm={searchTerm}
+                      filterElement={filterElement}
+                    />
+                  )}
+                </div>
                 <PageButtons
                   page={pageNumber}
                   handleDecrement={handleDecrement}
