@@ -34,7 +34,7 @@
   }
 
   &__description {
-    font-size: 14px;
+    font-size: 13px;
     font-family: $card-description;
 
     &--back {
@@ -54,4 +54,8 @@
   }
 }
 
-//TODO - Tune styling at super low screen widths (235px and below)
+@media screen and (min-width: 269px) {
+  .card__description {
+    font-size: 14px;
+  }
+}

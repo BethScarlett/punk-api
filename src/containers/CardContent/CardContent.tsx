@@ -2,36 +2,11 @@ import "./CardContent.scss";
 import Card from "../../components/Card/Card";
 import { Beer } from "../../types/types";
 
-type Beers = {
+type BeersProps = {
   beers: Beer[];
-  searchTerm: string;
-  filterElement: string;
 };
 
-const CardContent = ({ beers }: Beers) => {
-  // let filteredBeers = beers.filter((beer) =>
-  //   beer.name.toLowerCase().includes(searchTerm)
-  // );
-
-  // switch (filterElement) {
-  //   case "ABV": {
-  //     filteredBeers = filteredBeers.filter((beer) => beer.abv > 6);
-  //     break;
-  //   }
-  //   case "Classic": {
-  //     filteredBeers = filteredBeers.filter(
-  //       (beer) => Number(beer.first_brewed.split("/")[1]) < 2010
-  //     );
-  //     break;
-  //   }
-  //   case "Acidic": {
-  //     filteredBeers = filteredBeers.filter((beer) => beer.ph > 4);
-  //     break;
-  //   }
-  //   default: {
-  //   }
-  // }
-
+const CardContent = ({ beers }: BeersProps) => {
   return (
     <div className="beer-list">
       {beers.map((beer) => (
@@ -49,6 +24,3 @@ const CardContent = ({ beers }: Beers) => {
 };
 
 export default CardContent;
-
-//BUG - Some beers don't have corresponding images
-//TODO - Remove now uneeded props in type, and rename to ...Props while you're at it

@@ -1,16 +1,15 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { FormEvent, useEffect, useState } from "react";
+import { Beer } from "./types/types";
+import BeerInfo from "./components/BeerInfo/BeerInfo";
 import NavBar from "./components/NavBar/NavBar";
 import CardContent from "./containers/CardContent/CardContent";
-import { FormEvent, useEffect, useState } from "react";
-import BeerInfo from "./components/BeerInfo/BeerInfo";
-import { Beer } from "./types/types";
 import PageButtons from "./components/PageButtons/PageButtons";
 import NoBeers from "./components/NoBeers/NoBeers";
 
-//TODO - Tidy up code, including the above mess
-
 const App = () => {
+  //Create state variables
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filterElement, setFilterElement] = useState<string>("");
   const [acidic, setAcidic] = useState<boolean>(false);
@@ -18,6 +17,7 @@ const App = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [noBeers, setNoBeers] = useState<boolean>(false);
 
+  //Grab beers from the api
   const getBeers = async (
     pageNumber: number,
     filterElement: string,
@@ -28,29 +28,35 @@ const App = () => {
     const res = await fetch(url);
     let data: Beer[] = await res.json();
 
+    //Manually filter results for acidic filter
     if (acidic) {
       data = data.filter((beer) => beer.ph < 4);
     }
 
+    //Check if no beers have been retrieved from the api
     if (data.length == 0) setNoBeers(true);
     else if (data.length > 0) setNoBeers(false);
 
     setAPIBeers(data);
   };
 
+  //Watch state variables and pass in variables to adjust api url
   useEffect(() => {
     getBeers(pageNumber, filterElement, acidic, searchTerm);
   }, [pageNumber, filterElement, acidic, searchTerm]);
 
+  //Increase page number to show next set of beers if conditions are valid
   const handleIncrement = () => {
     if (pageNumber < 13 && (apiBeers.length == 25 || acidic))
       setPageNumber(pageNumber + 1);
   };
 
+  //Decrease page number to show previous set of beers if conditions are valid
   const handleDecrement = () => {
     if (pageNumber > 1) setPageNumber(pageNumber - 1);
   };
 
+  //Grab search term from input on screen and set state accordingly
   const handleSearchByName = (event: FormEvent<HTMLInputElement>) => {
     const cleanSearch = event.currentTarget.value.toLowerCase();
     if (cleanSearch != "") {
@@ -60,6 +66,7 @@ const App = () => {
     }
   };
 
+  //Grab selected filter element and set state accordingly
   const handleSearchByFilter = (event: FormEvent<HTMLInputElement>) => {
     if (event.currentTarget.checked) {
       switch (event.currentTarget.id) {
@@ -86,6 +93,7 @@ const App = () => {
       <div className="app">
         <h1 className="app__heading">🍺Punk API🍺</h1>
         <div className="app__navbar">
+          {/* Display Navbar on every page */}
           <NavBar
             searchTerm={searchTerm}
             handleSearchByName={handleSearchByName}
@@ -94,19 +102,13 @@ const App = () => {
         </div>
         <Routes>
           <Route
+            // Display cards on the base url
             path="/"
             element={
               <>
+                {/* Only show cards if there are cards to show */}
                 <div>
-                  {noBeers ? (
-                    <NoBeers />
-                  ) : (
-                    <CardContent
-                      beers={apiBeers}
-                      searchTerm={searchTerm}
-                      filterElement={filterElement}
-                    />
-                  )}
+                  {noBeers ? <NoBeers /> : <CardContent beers={apiBeers} />}
                 </div>
                 <PageButtons
                   page={pageNumber}
@@ -116,6 +118,7 @@ const App = () => {
               </>
             }
           />
+          {/* Route to each beer's individual page */}
           <Route path="/:beerID" element={<BeerInfo beers={apiBeers} />} />
         </Routes>
       </div>

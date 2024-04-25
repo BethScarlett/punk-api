@@ -24,8 +24,6 @@ const Card = ({ img, name, description, id }: CardProps) => {
     setShowFullDesc(!showFullDesc);
   };
 
-  //TODO - Think of better name than smallDesc and fullDesc
-
   const smallDesc = (
     <div>
       <div>{shortDesc}</div>
@@ -47,9 +45,15 @@ const Card = ({ img, name, description, id }: CardProps) => {
 
   let cardClassName = "card__description";
   if (showFullDesc) cardClassName += " card__description--back";
+
+  let beerImg: string = "";
+  if (img == null) {
+    beerImg = "https://images.punkapi.com/v2/24.png";
+  } else beerImg = img;
+
   return (
     <div className="card">
-      <img src={img} alt="" className="card__image" />
+      <img src={beerImg} alt="" className="card__image" />
       <Link to={`/${id}`}>
         <h1 className="card__heading">{name}</h1>
       </Link>
@@ -60,5 +64,3 @@ const Card = ({ img, name, description, id }: CardProps) => {
 };
 
 export default Card;
-
-//TODO - Look at dealing with shortening the description in the card content container instead
