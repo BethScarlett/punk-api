@@ -62,3 +62,4 @@ const BeerInfo = ({ beers }: BeerInfoProps) => {
 export default BeerInfo;
 
 //TODO - Fix BEM naming conventions in above. Also try and find way to optimise getting the ingredients list
+//TODO - Create way to go back to home
