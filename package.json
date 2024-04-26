@@ -2,7 +2,7 @@
   "name": "punk-api",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://BethScarlett.github.io/punk-api/",
+  "homepage": "https://BethScarlett.github.io/punk-api",
   "author": "Bethany Burrows",
   "type": "module",
   "scripts": {
