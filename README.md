@@ -1,3 +1,5 @@
+# NOTE - This deployment is currently not working due to the API being utilized having been taken offline. As a result no beers will show. ETA as to when I will fix this problem is unknown.
+
 # Punk API Beer Sorter
 
 ## About this application
@@ -39,5 +41,3 @@ Or maybe this:
 ![Error Page One](/public/error-page-2.PNG)
 
 If you do, then don't panic. These are just error handlers which informs you the app couldn't find what you were looking for. Simply press the home button, or in the latters case the up/down page button arrows, to return to normaility.
-
-# NOTE - This deployment is currently not working due to the API being utilized having been taken offline. As a result no beers will show. ETA as to when I will fix this problem is unknown.
