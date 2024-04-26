@@ -53,7 +53,7 @@ const Card = ({ img, name, description, id }: CardProps) => {
 
   return (
     <div className="card">
-      <img src={beerImg} alt="" className="card__image" />
+      <img src={beerImg} alt="beer" className="card__image" />
       <Link to={`/${id}`}>
         <h1 className="card__heading">{name}</h1>
       </Link>
