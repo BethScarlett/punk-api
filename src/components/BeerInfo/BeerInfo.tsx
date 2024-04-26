@@ -7,10 +7,13 @@ type BeerInfoProps = {
 };
 
 const BeerInfo = ({ beers }: BeerInfoProps) => {
+  //Grab beer id from url
   const { beerID } = useParams();
 
+  //Filter beers array to find id match
   const filteredBeer = beers.find((beer) => beer.id === Number(beerID));
 
+  //Handle if no match was found
   if (!filteredBeer)
     return (
       <div className="beer-error">
@@ -23,8 +26,10 @@ const BeerInfo = ({ beers }: BeerInfoProps) => {
       </div>
     );
 
+  //Create string for ingredients
   let ingredients: string = "Malt (";
 
+  //Loop through each ingredient array, and add values to string
   const malts = filteredBeer.ingredients.malt.forEach((malt) => {
     ingredients += `${malt.name} (${malt.amount.value} ${malt.amount.unit}) `;
   });
@@ -40,11 +45,13 @@ const BeerInfo = ({ beers }: BeerInfoProps) => {
 
   return (
     <div className="beer-info" id="information">
+      {/* Show image of filtered beer */}
       <img
         src={filteredBeer.image_url}
         alt={filteredBeer.name}
         className="beer-info__image"
       />
+      {/* Display information about filtered */}
       <div className="beer-info__details">
         <h1>{filteredBeer.name}</h1>
         <p>"{filteredBeer.tagline}"</p>

@@ -24,6 +24,7 @@ const Card = ({ img, name, description, id }: CardProps) => {
     setShowFullDesc(!showFullDesc);
   };
 
+  //Create small description function to display before expand is clicked
   const smallDesc = (
     <div>
       <div>{shortDesc}</div>
@@ -33,6 +34,7 @@ const Card = ({ img, name, description, id }: CardProps) => {
     </div>
   );
 
+  //Create full description function to display after expand is clicked
   const fullDesc = (
     <>
       <h2 className="card__heading">Description: </h2>
@@ -43,9 +45,13 @@ const Card = ({ img, name, description, id }: CardProps) => {
     </>
   );
 
+  //Create variable for card class name
   let cardClassName = "card__description";
+
+  //Append card class name variable if full description is showing
   if (showFullDesc) cardClassName += " card__description--back";
 
+  //Check if image url is null and manually set it if so
   let beerImg: string = "";
   if (img == null) {
     beerImg = "https://images.punkapi.com/v2/24.png";
@@ -53,11 +59,13 @@ const Card = ({ img, name, description, id }: CardProps) => {
 
   return (
     <div className="card">
+      {/* Display beer image */}
       <img src={beerImg} alt="beer" className="card__image" />
+      {/* Wrap heading in link to send user to indivdual beer info page */}
       <Link to={`/${id}`}>
         <h1 className="card__heading">{name}</h1>
       </Link>
-
+      {/* Either show full description or short description, depending on showFullDesc state variable */}
       <div className={cardClassName}>{showFullDesc ? fullDesc : smallDesc}</div>
     </div>
   );

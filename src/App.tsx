@@ -82,6 +82,10 @@ const App = () => {
           setFilterElement("");
           setAcidic(true);
           break;
+        case "All":
+          setFilterElement("");
+          setAcidic(false);
+          break;
         default:
           setFilterElement("");
       }
